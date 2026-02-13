@@ -97,38 +97,38 @@ const ActiveTicket: React.FC = () => {
 
        {/* Main Content - Scrollable with center alignment */}
        <main className="flex-1 flex flex-col items-center px-4 w-full overflow-y-auto no-scrollbar pb-24">
-          {/* Ticket Container - Auto margin Y centers it when space is available, otherwise it scrolls */}
-          <div className="w-full max-w-[340px] bg-[#FFF5F5] rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.08)] relative flex flex-col shrink-0 my-auto transform transition-all">
+          {/* Ticket Container - Min height added to ensure it covers ~72% of viewport */}
+          <div className="w-full max-w-[340px] min-h-[72vh] bg-[#FFF5F5] rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.08)] relative flex flex-col shrink-0 my-auto transform transition-all">
               
               {/* Red Header */}
-              <div className="bg-[#c2392b] py-1.5 px-2 flex items-center justify-center text-center shrink-0">
+              <div className="bg-[#c2392b] py-2 px-2 flex items-center justify-center text-center shrink-0">
                   <h1 className="text-white text-[12px] font-medium tracking-wide drop-shadow-sm truncate">
                       पुणे महानगर परिवहन महामंडळ लि.
                   </h1>
               </div>
 
               {/* Ticket Body */}
-              <div className="flex flex-col">
+              <div className="flex flex-col flex-1">
                   
                   {/* Top Section */}
-                  <div className="px-4 pt-3 pb-1">
+                  <div className="px-5 pt-5 pb-2">
                       {/* Row 1: Route, Count, Fare */}
-                      <div className="grid grid-cols-3 mb-4">
+                      <div className="grid grid-cols-3 mb-5">
                           {/* Route */}
                           <div className="flex flex-col items-start">
-                              <span className="text-[#757575] text-[10px] font-normal mb-0.5">Route</span>
+                              <span className="text-[#757575] text-[10px] font-normal mb-1">Route</span>
                               <span className="text-[#212121] text-[18px] font-bold leading-none">{ticketData.busNumber || 'H9'}</span>
                           </div>
                           
                           {/* Tickets count */}
                           <div className="flex flex-col items-center pt-0.5">
-                              <span className="text-[#757575] text-[10px] font-normal mb-0.5">Tickets count</span>
+                              <span className="text-[#757575] text-[10px] font-normal mb-1">Tickets count</span>
                               <span className="text-[#212121] text-[15px] font-bold">{ticketData.adults + ticketData.children}</span>
                           </div>
                           
                           {/* Fare */}
                           <div className="flex flex-col items-end">
-                              <span className="text-[#757575] text-[10px] font-normal mb-0.5">Fare</span>
+                              <span className="text-[#757575] text-[10px] font-normal mb-1">Fare</span>
                               <span className="text-[#212121] text-[18px] font-bold leading-none">₹{ticketData.fare}</span>
                           </div>
                       </div>
@@ -157,14 +157,14 @@ const ActiveTicket: React.FC = () => {
                   </div>
 
                   {/* Perforation Line 1 */}
-                  <div className="relative flex items-center w-full h-4 my-0.5">
+                  <div className="relative flex items-center w-full h-4 my-1">
                       <div className="absolute left-[-8px] w-4 h-4 bg-[#e5e5e5] rounded-full"></div>
                       <div className="flex-1 border-t-[1.5px] border-dashed border-[#d0d0d0] mx-2"></div>
                       <div className="absolute right-[-8px] w-4 h-4 bg-[#e5e5e5] rounded-full"></div>
                   </div>
 
                   {/* Middle Section: Timestamps & Code */}
-                  <div className="px-4 pt-1 pb-1 flex flex-col items-center relative">
+                  <div className="px-5 py-3 flex flex-col items-center relative">
                       
                       {/* Invalid Stamp Overlay */}
                       {isExpired && (
@@ -179,13 +179,13 @@ const ActiveTicket: React.FC = () => {
                       )}
 
                       {/* Timestamps */}
-                      <div className="flex justify-between items-start w-full mb-2 relative z-0">
+                      <div className="flex justify-between items-start w-full mb-3 relative z-0">
                           <div>
-                              <p className="text-[9px] text-[#757575] mb-0.5">Booking Time</p>
+                              <p className="text-[9px] text-[#757575] mb-1">Booking Time</p>
                               <p className="text-[10px] font-bold text-[#212121] tracking-wide">{formatDate(bookingDate)}</p>
                           </div>
                           <div className="text-right">
-                              <p className="text-[9px] text-[#757575] mb-0.5">Validity Time</p>
+                              <p className="text-[9px] text-[#757575] mb-1">Validity Time</p>
                               <p className="text-[10px] font-bold text-[#212121] tracking-wide pr-1">{formatDate(validityDate)}</p>
                           </div>
                       </div>
@@ -195,12 +195,12 @@ const ActiveTicket: React.FC = () => {
                   </div>
 
                   {/* Perforation Line 2 */}
-                  <div className="relative flex items-center w-full h-4 my-0.5">
+                  <div className="relative flex items-center w-full h-4 my-1">
                       <div className="flex-1 border-t-[1.5px] border-dashed border-[#d0d0d0] mx-2"></div>
                   </div>
 
-                  {/* Bottom Section: Custom Logo Upload */}
-                  <div className="px-4 pt-1 pb-4 flex flex-col items-center justify-center relative min-h-[140px]">
+                  {/* Bottom Section: Custom Logo Upload - Flex-1 to fill remaining space */}
+                  <div className="px-5 pt-2 pb-5 flex-1 flex flex-col items-center justify-center relative min-h-[150px]">
                       <input 
                         type="file" 
                         ref={fileInputRef} 
@@ -221,7 +221,7 @@ const ActiveTicket: React.FC = () => {
                                 target.src = "https://upload.wikimedia.org/wikipedia/commons/e/e6/PMPML_Logo.png";
                             }}
                             alt="Ticket Logo" 
-                            className={`w-28 h-28 object-contain mix-blend-multiply ${isExpired ? 'grayscale opacity-50' : ''} animate-logo-breathe`}
+                            className={`w-36 h-36 object-contain mix-blend-multiply ${isExpired ? 'grayscale opacity-50' : ''} animate-logo-breathe`}
                         />
                         {/* Overlay hint */}
                         <div className="absolute -bottom-2 bg-slate-200/50 backdrop-blur-sm px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
@@ -231,7 +231,7 @@ const ActiveTicket: React.FC = () => {
                   </div>
 
                   {/* Timer Strip */}
-                  <div className="w-full bg-[#eeeeee] py-1.5 flex items-center justify-center mt-auto border-t border-slate-100">
+                  <div className="w-full bg-[#eeeeee] py-1.5 flex items-center justify-center mt-auto border-t border-slate-100 shrink-0">
                     {!isExpired ? (
                         <p className="text-[10px] text-slate-700 font-mono font-medium tracking-wider">
                             {formatTimeLeft(timeLeft)}
