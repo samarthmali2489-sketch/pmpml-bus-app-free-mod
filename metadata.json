@@ -1,0 +1,7 @@
+{
+  "name": "PMPML Transit App",
+  "description": "A comprehensive public transit application for Pune Mahanagar Parivahan featuring live tracking, mobile ticketing, journey planning, and bus pass services.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
