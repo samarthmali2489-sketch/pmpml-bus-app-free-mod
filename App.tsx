@@ -26,7 +26,7 @@ const AppContent: React.FC = () => {
   const shouldShowBottomNav = !hideBottomNavRoutes.includes(location.pathname);
 
   return (
-    <div className="flex flex-col h-screen max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl relative overflow-hidden">
+    <div className="flex flex-col h-[100dvh] max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl relative overflow-hidden">
       <div className="flex-1 overflow-hidden relative">
         <Routes>
           <Route path="/" element={<Home />} />
